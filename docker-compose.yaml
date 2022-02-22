@@ -4,7 +4,7 @@ services:
     privileged: true
     container_name: dnsmasq
     ports:
-      - '53:53/udp'
+      - '6000:53/udp'
     volumes:
       - '/share/Container/repo/dnsmasq.conf:/etc/dnsmasq.conf'
     logging:
@@ -12,10 +12,14 @@ services:
         max-size: 100m
     restart: always
     image: anzevalher/dnsmasq:latest
-    network_mode: "host"
     cap_drop:
       - NET_ADMIN
       - NET_RAW
       - NET_BIND_SERVICE
       - SETUID
       - SETGID
+    networks:
+      - "dns"
+networks:
+  dns:
+    driver: bridge

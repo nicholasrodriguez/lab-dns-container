@@ -31,19 +31,20 @@ server=${LAB_DNS1}
 #address=/services.${LAB_DOMAIN}/${LAB_DNS1}
 
 # to be able to access the host
-#address=/${HOST}/${HOST}.${LAB_DOMAIN}/${SERVER_IP}
+#address=/${HOST}/${HOST}.${LAB_DOMAIN}/${LAB_DNS1}
 
 # Specifies DNS domains for the DHCP server. Domains may be be given unconditionally
 domain=${LAB_DOMAIN}
 
 # Specify IP address of upstream servers directly.
-local=/${LAB_DOMAIN}/
+#local=/${LAB_DOMAIN}/
 
 #log all dns queries
 log-queries
 
 # Set the facility to which dnsmasq will send syslog entries
 log-facility=/var/lib/misc/dnsmasq.log
+# Not sure how this works in a container but works without it
 # Listen on the given IP address
-#listen-address=${SERVER_IP}
-#listen-address=::1,127.0.0.1,${SERVER_IP}
+#listen-address=${LAB_DNS1}
+#listen-address=::1,127.0.0.1,${LAB_DNS1}
